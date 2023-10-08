@@ -17,7 +17,7 @@ class LoginController extends Controller
      * @unauthenticated
      * @operationId Login
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): \Illuminate\Http\JsonResponse
     {
         $request->validate([
             /** @example test@example.com */
@@ -36,6 +36,8 @@ class LoginController extends Controller
             ]);
         }
 
-        return $user->createToken($request->device_name)->plainTextToken;
+        return response()->json([
+            'token' => $user->createToken($request->device_name)->plainTextToken
+        ]);
     }
 }
