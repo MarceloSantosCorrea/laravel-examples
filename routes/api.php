@@ -1,19 +1,23 @@
 <?php
 
+use App\Http\Controllers\Api\Authentication\LoginController;
+use App\Http\Controllers\Api\Todo\DeleteTodoController;
+use App\Http\Controllers\Api\Todo\ListTodoController;
+use App\Http\Controllers\Api\Todo\ShowTodoController;
+use App\Http\Controllers\Api\Todo\StoreTodoController;
+use App\Http\Controllers\Api\Todo\UpdateTodoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
+Route::post('login', LoginController::class);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('user', fn(Request $request) => $request->user());
+    Route::prefix('todos')->group(function () {
+        Route::get('/', ListTodoController::class);
+        Route::post('/', StoreTodoController::class);
+        Route::get('{todo}', ShowTodoController::class);
+        Route::put('{todo}', UpdateTodoController::class);
+        Route::delete('{todo}', DeleteTodoController::class);
+    });
 });
