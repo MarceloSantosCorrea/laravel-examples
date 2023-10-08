@@ -9,3 +9,4 @@ Alguns exemplos de pacotes e práticas com Laravel
   - https://scramble.dedoc.co/
 - pacote ryoluo/sail-ssl
   - https://github.com/ryoluo/sail-ssl
+- pacote joelbutcher/laravel-facebook-graph para gerenciamento da api do facebook 

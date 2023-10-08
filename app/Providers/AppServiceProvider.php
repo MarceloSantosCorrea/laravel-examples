@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Services\Facebook\FacebookPersistentDataHandler;
 use Dedoc\Scramble\Scramble;
 use Dedoc\Scramble\Support\Generator\OpenApi;
 use Dedoc\Scramble\Support\Generator\SecurityScheme;
+use Facebook\Facebook;
 use Illuminate\Routing\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -13,6 +15,14 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
+        $this->app->bind(Facebook::class, function () {
+            return new Facebook([
+                'app_id' => config('services.facebook.app_id'),
+                'app_secret' => config('services.facebook.app_secret'),
+                'default_graph_version' => 'v13.0',
+                'persistent_data_handler' => new FacebookPersistentDataHandler(),
+            ]);
+        });
     }
 
     public function boot(): void
