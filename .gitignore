@@ -18,3 +18,5 @@ yarn-error.log
 /.idea
 /.vscode
 coverage
+./docker/nginx/certs/server.key
+./docker/nginx/certs/server.pem
