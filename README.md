@@ -7,3 +7,5 @@ Alguns exemplos de pacotes e práticas com Laravel
 - Campo Auto Increment com uuid
 - pacote dedoc/scramble para documentação da api
   - https://scramble.dedoc.co/
+- pacote ryoluo/sail-ssl
+  - https://github.com/ryoluo/sail-ssl
