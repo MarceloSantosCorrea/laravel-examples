@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Services\Facebook\FacebookPersistentDataHandler;
+use App\Services\Repositories\TodoRepository;
+use Core\Todo\Application\Repository\TodoRepositoryInterface;
 use Dedoc\Scramble\Scramble;
 use Dedoc\Scramble\Support\Generator\OpenApi;
 use Dedoc\Scramble\Support\Generator\SecurityScheme;
@@ -15,6 +17,11 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
+        $this->app->singleton(
+            TodoRepositoryInterface::class,
+            TodoRepository::class,
+        );
+
         $this->app->bind(Facebook::class, function () {
             return new Facebook([
                 'app_id' => config('services.facebook.app_id'),

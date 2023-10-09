@@ -13,8 +13,8 @@
         </testsuite>
     </testsuites>
     <source>
-        <include>
-            <directory>app</directory>
+        <include >
+            <directory>./app</directory>
         </include>
         <exclude>
             <file>./app/Console/Kernel.php</file>

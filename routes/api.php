@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', LoginController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
+
     Route::get('user', fn(Request $request) => $request->user());
+
     Route::prefix('todos')->group(function () {
         Route::get('/', ListTodoController::class);
         Route::post('/', StoreTodoController::class);

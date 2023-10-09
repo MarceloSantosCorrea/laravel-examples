@@ -11,4 +11,4 @@ Content-Type: application/json
 ###
 GET http://localhost/api/user
 Accept: application/json
-Authorization: Bearer 9a514ac5-487c-4cc5-ae8a-8979e90f0d38|3J2nohYjfJ2NxH4En8qUonxqY4hBks0pizxtwAoG86297d49
+Authorization: Bearer 9a546244-851f-48ba-8076-5d40214001a0|a8jNTOJASA23JfF4evyvR322jb8oFAH4Q6AsrOAq202bdbf9
