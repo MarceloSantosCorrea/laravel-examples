@@ -20,3 +20,4 @@ yarn-error.log
 coverage
 docker/nginx/certs/server.key
 docker/nginx/certs/server.pem
+.DS_Store
