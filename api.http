@@ -9,6 +9,16 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost/api/user
+POST https://laravel.test/api/login
 Accept: application/json
-Authorization: Bearer 9a546244-851f-48ba-8076-5d40214001a0|a8jNTOJASA23JfF4evyvR322jb8oFAH4Q6AsrOAq202bdbf9
+Content-Type: application/json
+
+{
+    "email": "marcelocorrea229@gmail.com",
+    "password": "Marsc2014"
+}
+
+###
+GET https://laravel.test/api/user
+Accept: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2xhcmF2ZWwudGVzdC9hcGkvbG9naW4iLCJpYXQiOjE2OTczMzYxNzUsImV4cCI6MTY5NzMzOTc3NSwibmJmIjoxNjk3MzM2MTc1LCJqdGkiOiJDeFYwcTI4bkpCTWdiVENiIiwic3ViIjoiOWE1OTNkMjktZDllZi00ZDA4LWE0NjktMTM4MzkyZTYyODc3IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.jZlbBhR83Q-DYJ6_mZnUmpEmHEfG6C_OOd5xz_wnDNk

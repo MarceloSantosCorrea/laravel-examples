@@ -2,9 +2,21 @@
 
 use Facebook\Facebook;
 use Illuminate\Support\Facades\Route;
+use Jenssegers\Agent\Agent;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/agent', function () {
+    $agent = new Agent();
+    dd([
+        'ip' => request()->ip(),
+        'platform' => $agent->platform() . ' - ' . str_replace('_', '.', $agent->version($agent->platform())),
+        'deviceType' => $agent->deviceType(),
+        'device' => $agent->device(),
+        'browser' => $agent->browser() . ' - ' . $agent->version($agent->browser()),
+    ]);
 });
 
 Route::get('facebook/login', function () {
