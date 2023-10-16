@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Authentication;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -11,34 +12,31 @@ use Illuminate\Validation\ValidationException;
 /**
  * @tags Authentication
  */
-class LoginController extends Controller
+class LoginJWTController extends Controller
 {
     /**
      * @unauthenticated
      * @operationId Login
      */
-    public function __invoke(Request $request): \Illuminate\Http\JsonResponse
+    public function __invoke(Request $request): JsonResponse
     {
         $request->validate([
             /** @example test@example.com */
             'email' => 'required|email',
             /** @example password */
             'password' => 'required',
-            /** @example PHPStorm */
-            'device_name' => 'required',
         ]);
 
-        /** @var User $user */
-        $user = User::where('email', $request->email)->first();
+        $credentials = request(['email', 'password']);
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
+        if (!$token = auth('api')->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthenticated'], 401);
         }
 
         return response()->json([
-            'token' => $user->createToken($request->device_name)->plainTextToken
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
     }
 }
